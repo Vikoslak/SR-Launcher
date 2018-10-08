@@ -348,6 +348,7 @@ function disableAll(cancel) {
     verifyBtn.disabled = true;
     playBtn.disabled = true;
     setupBtn.disabled = true;
+    loginServerSel.disabled = true;
     if (cancel == true)
         cancelBtn.disabled = false;
     for (var child of modListBox.children) {
@@ -361,6 +362,7 @@ function enableAll() {
     setupBtn.disabled = false;
     swgOptionsBtn.disabled = false;
     cancelBtn.disabled = true;
+    loginServerSel.disabled = false;
     for (var child of modListBox.children) {
         child.children[0].disabled = false;
     }    
