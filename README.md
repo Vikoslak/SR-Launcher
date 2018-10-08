@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Sentinels Repuiblic Launcher
 
 =======
@@ -43,7 +42,6 @@ Note: If you're using Linux Bash for Windows, [see this guide](https://www.howto
 - [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
 - [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
 - [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
->>>>>>> 76df77473fde6a92e10c5f59cd561f30d8abee22
 
 ## License
 
