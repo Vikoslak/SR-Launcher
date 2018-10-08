@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sentinels Republic Launcher</title>
+    <link rel="stylesheet" href="./styles.css" type="text/css" />
+    <style>
+    </style>
+  </head>
+  <body>
+    <div class="launcher-wrap">
+      <div class="launcher-bg"></div>
+      <div class="main-section">
+        <div class="header-section">
+          <img href="http://www.swgsremu.com" class="sr-logo draggable" src="./img/img-sr-logo.png" />
+          <div id="headerLinks">
+            <a href="http://www.swgsremu.com/updates" class="header-link patch-notes-title text-link">Patch Notes</a>
+            <a href="http://www.swgsremu.com/" class="header-link text-link">Website</a>
+            <a href="http://www.swgsremu.com/forum" class="header-link text-link">Forums</a>
+            <a href="https://discord.gg/k8QK2MB" class="header-link btn-links btn-discord"></a>
+            <a href="https://www.facebook.com/SentinelsRepublicEmu/" class="header-link btn-links btn-facebook"></a>
+          </div>
+          <div class="window-management">
+            <button id="minimize" class="window-button"></button>
+            <button id="close" class="window-button"></button>
+          </div>
+        </div>
+        <div class="content-section">
+          <div class="left-section">
+            <div class="patch-notes-wrapper">
+              <webview class="patch-notes-view" src="http://swgsremu.com/updates/patch-notes"></webview>
+            </div>
+          </div>
+          <div class="right-section">
+            <div class="config-section-container">
+              <div id="configSection" style="display:none">
+                <div class="config-section-header">Game Config</div>
+                <div class="config-options">
+                  <div class="config-col left-col">
+                    <div class="sr-folder">
+                      <div class="config-label">Game Files
+                      </div>
+                      <div>
+                        <button class="tooltip float-right" tooltip="Selecting &#34;Change&#34; will run Setup. No files will be lost." tooltip-position="top">?</button>
+                        <div class="config-label-sm">Installation Directory</div>
+                      </div>
+                      <div class="row">
+                        <div class="column col-4">
+                          <input id="setup" type="text" class="input" disabled/>
+                        </div>
+                        <div class="column col-2 browse-column">
+                          <button id="setupBtn" class="sr-button-sm">Change</button>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div>
+                      <div class="row">
+                        <div class="column col-2">
+                          <button class="tooltip float-right" tooltip="Verify the integrity of your game files. This could take awhile." tooltip-position="top">?</button>
+                          <div class="config-label-sm">Full Scan</div>
+                          <button id="verifyBtn" class="sr-button-sm">Verify Files</button>
+                        </div>
+                        <div class="column col-4 browse-column">
+                          <button class="tooltip float-right" tooltip="Switching a login server will convert your installation. Please do not change your primary installation to a test version without having a backup." tooltip-position="top">?</button>
+                          <div class="config-label-sm">Login Server</div>
+                          <select id="loginServerSelect" class="full-width">
+                            <option value="live">Live Server</option>
+                            <option value="test">Test Server</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="config-col right-col">
+                    <div class="sr-swg-config">
+                      <p class="config-label">SWG Config</p>
+                      <div class="row">
+                        <div class="column col-2">
+                          <div class="config-label-sm">Memory</div>
+                          <select id="ram" class="full-width">
+                            <option value="2048">2 GB</option>
+                            <option value="1536">1.5 GB</option>
+                            <option value="1024">1 GB</option>
+                            <option value="750">750 MB</option>
+                          </select>
+                        </div>
+                        <div class="column col-2 col-spacer-6">
+                          <div class="config-label-sm">FPS</div>
+                          <select id="fps" class="full-width">
+                            <option value="120">120</option>
+                            <option value="60">60</option>
+                            <option value="45">45</option>
+                            <option value="30">30</option>
+                          </select>
+                        </div>
+                        <div class="column col-2 col-spacer-6">
+                          <div class="config-label-sm">Zoom</div>
+                          <select id="zoom" class="full-width">
+                            <option value="1">1 (default)</option>
+                            <option value="3">3</option>
+                            <option value="5">5 (medium)</option>
+                            <option value="7">7</option>
+                            <option value="10">10 (far)</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="right"></div>
+                    <ul id="modlist" class=""></ul>
+                  </div>
+                </div>
+                <div class="config-section-arrow"></div>
+              </div>
+            </div>
+            <div class="right-section-container">
+              <div class="options-buttons">
+                <button id="swgOptionsBtn" class="option-button sr-button sr-btn-icon sr-btn-icon-left">SWG Options</button>
+                <button id="gameConfigBtn" class="option-button sr-button sr-btn-icon sr-btn-icon-left">Game Config</button>
+              </div>
+              <div id="mainButtonLinks">
+                <a href="http://galaxyharvester.net/ghHome.py?" class="button-link button-resources"></a>
+                <a href="http://www.swgsremu.com/skillplanner/#/" class="button-link button-skillplanner"></a>
+                <a href="http://www.sentinelsgalaxy.com/mantis/login_page.php" class="button-link button-mantis"></a>
+                <a href="https://topg.org/swg-private-servers/in-473411" class="button-link button-topg"></a>
+                <a href="https://www.paypal.com/donate/?token=lxogWA4KH7w7S5GQ7WMc5nh21dgDovqwn1Xcr5SeLQwEHQBIQX5cz_yFlf2euXfcrZNM8m&country.x=GB&locale.x=GB" class="button-link button-donate"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-section">
+        <div class="progress-container">
+          <div class="progress-stats">
+            <button id="cancelBtn">Cancel</button>
+            <div id="progresstext">100%</div>
+          </div>
+          <div class="progress-bar">
+            <div id="progress"></div>
+          </div>
+          <div class="server-stats">
+            <div class="server-stat-data">Server Status: <span id="serverStatus">Offline</span></div>
+            <div class="server-stat-data">Active Server: <span id="activeServer"></span></div>
+            <div class="server-stat-data">Launcher Version: <span id="version"></span></div>
+          </div>
+        </div>
+        <div class="play-button-container">
+          <button id="play" class="button" disabled>Play</button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    require('./renderer.js')
+  </script>
+</html>
