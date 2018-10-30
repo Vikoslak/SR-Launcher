@@ -39,6 +39,7 @@ const gameConfigSection = document.getElementById('configSection');
 // External Links
 const headerLinks = document.getElementById("headerLinks");
 const mainButtonLinks = document.getElementById('mainButtonLinks');
+const patchNotesView = document.getElementById('patchNotesView');
 
 const serverStatus = document.getElementById('serverStatus');
 const activeServer = document.getElementById('activeServer');
@@ -193,6 +194,13 @@ mainButtonLinks.addEventListener('click', function(e) {
         shell.openExternal(e.target.href);
 });
 
+patchNotesView.addEventListener('will-navigate', function(e) {
+    const protocol = require('url').parse(e.url).protocol;
+    if (protocol === 'http:' || protocol === 'https:')
+        shell.openExternal(e.url);
+    patchNotesView.stop();
+});
+
 // -----------------
 //    Game Config
 // -----------------
@@ -225,7 +233,7 @@ loginServerSel.addEventListener('change', event => {
     serverStatus.className = "no-opacity";
     setTimeout(function(){serverStatus.className = "fade-in";},200);
     getServerStatus(config.login);
-    if(confirm("It is recommended to run a \"Full Scan\" to verify your game files after switching login servers.\n\nYou may ignore this message by selecting \"Cancel\" and restart the launcher to attempt to download any new patches, but any changes to existing files will not occurs.\n\nDo not change the login server for your primary installation, always have a back up!\n\nSelect \"OK\" to verify your game files.")) {
+    if(confirm("It is recommended to run a \"Full Scan\" to verify your game files after switching login servers.\n\nYou may ignore this message by selecting \"Cancel\" and restart the launcher to attempt to download any new patches, but existing files will not be patched and you may encounter issues.\n\nDo not change the login server for your primary installation, always have a back up!\n\nSelect \"OK\" to verify your game files.")) {
         verifyFiles();
     }
 });
@@ -337,11 +345,11 @@ if (fs.existsSync(path.join(config.folder, 'qt-mt305.dll'))) {
     playBtn.innerHTML = "Setup";
     playBtn.disabled = false;
     playBtn.className = "button game-setup";
+    verifyBtn.disabled = true;
+    setupBtn.disabled = true;
+    loginServerSel.disabled = true;
     swgOptionsBtn.disabled = true;
     cancelBtn.disabled = true;
-    //ipc.send('setup-game');
-    //verifyBtn.disabled = true;
-    //install.getManifest();
 }
 
 function disableAll(cancel) {

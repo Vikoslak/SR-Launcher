@@ -30,19 +30,20 @@ log.info('App starting...');*/
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 1130,
-   height: 610,
-   resizable: false,
-   fullscreen: false,
-   fullscreenable: false,
-   maximizable: false,
-   maxWidth: 1130,
-   maxHeight: 610,
-   transparent: true,
-   show: false,
-   autoHideMenuBar: true,
-   frame: false,
-   icon: path.join(__dirname, 'img/launcher-icon-64.png')
+  mainWindow = new BrowserWindow({
+    width: 1130,
+    height: 610,
+    resizable: false,
+    fullscreen: false,
+    fullscreenable: false,
+    maximizable: false,
+    maxWidth: 1130,
+    maxHeight: 610,
+    transparent: true,
+    show: false,
+    autoHideMenuBar: true,
+    frame: false,
+    icon: path.join(__dirname, 'img/launcher-icon-64.png')
   });
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
@@ -71,18 +72,19 @@ ipcMain.on('setup-game', function() {
 
 function setupGame() {
   if (setupWindow == null) {
-    setupWindow = new BrowserWindow({width: 810,
-     height: 610,
-     resizable: false,
-     fullscreen: false,
-     fullscreenable: false,
-     maximizable: false,
-     maxWidth: 810,
-     maxHeight: 610,
-     transparent: true,
-     frame: false,
-     autoHideMenuBar: true,
-     icon: path.join(__dirname, 'img/installer-icon-64.png')
+    setupWindow = new BrowserWindow({
+      width: 810,
+      height: 610,
+      resizable: false,
+      fullscreen: false,
+      fullscreenable: false,
+      maximizable: false,
+      maxWidth: 810,
+      maxHeight: 610,
+      transparent: true,
+      frame: false,
+      autoHideMenuBar: true,
+      icon: path.join(__dirname, 'img/installer-icon-64.png')
     });
     setupWindow.loadURL(url.format({
       pathname: path.join(__dirname, 'setup', 'index.html'),
@@ -118,11 +120,11 @@ autoUpdater.on('update-downloaded', (info) => {
 
 autoUpdater.on('download-progress', (progress) => {
   mainWindow.webContents.send('download-progress', progress);
-})
+});
 
 autoUpdater.on('update-available', info => {
   mainWindow.webContents.send('downloading-update', 'Downloading version ' + info.version);
-})
+});
 
 app.on('ready', function()  {
   if (!require('electron-is-dev'))

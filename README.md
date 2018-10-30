@@ -1,6 +1,6 @@
-# Sentinels Repuiblic Launcher
+# Sentinels Republic Launcher
 
-=======
+
 # electron-quick-start
 
 **Clone and run for a quick way to see Electron in action.**
