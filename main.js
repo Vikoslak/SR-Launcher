@@ -12,7 +12,6 @@ var mygamesdir = documentsdir + '/My Games';
 var srdir =  mygamesdir + '/SWG - Sentinels Republic';
 
 if (!fs.existsSync(documentsdir)) {
-  alert("It seems you are using an older Operating System. You may experience issues with the launcher.");
   fs.mkdirSync(documentsdir);
 }
 
@@ -55,7 +54,7 @@ function createWindow() {
   mainWindow.once('closed', () => mainWindow = null);
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => setTimeout(createWindow, 100)); // Linux / MacOS transparancy fix
 app.on('window-all-closed', () => app.quit());
 
 ipcMain.on('open-directory-dialog', function (event, response) {
@@ -115,7 +114,7 @@ ipcMain.on('open-profcalc', function() {
 });
 
 autoUpdater.on('update-downloaded', (info) => {
-  autoUpdater.quitAndInstall();  
+  autoUpdater.quitAndInstall();
 });
 
 autoUpdater.on('download-progress', (progress) => {

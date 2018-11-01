@@ -9,6 +9,7 @@ const cleanup = require('./json/cleanup');
 const package = require('./package');
 const install = require('./install');
 const path = require('path');
+const os = require('os');
 
 const playBtn = document.getElementById('play');
 //const profcalcBtn = document.getElementById('profcalc');
@@ -46,7 +47,7 @@ const activeServer = document.getElementById('activeServer');
 const versionDiv = document.getElementById('version');
 versionDiv.innerHTML = package.version;
 
-const configFile = require('os').homedir() + '/Documents/My Games/SWG - Sentinels Republic/SR-Launcher-config.json';
+const configFile = os.homedir() + '/Documents/My Games/SWG - Sentinels Republic/SR-Launcher-config.json';
 var config = {folder: 'C:\\SREmu'};
 
 if (fs.existsSync(configFile))
@@ -82,7 +83,7 @@ if (needSave) saveConfig();
 getServerStatus(config.login);
 activeServer.innerHTML = server[config.login][0].address;
 
-function getServerStatus(serverStatusLogin) { 
+function getServerStatus(serverStatusLogin) {
     request({url:server[serverStatusLogin][0].statusUrl, json:true}, function(err, response, body) {
         if (err) return console.error(err);
         if (body.status != undefined) {
@@ -163,13 +164,21 @@ function play() {
         "-s", "SwgClient", "allowMultipleInstances=true"];
     var env = Object.create(require('process').env);
     env.SWGCLIENT_MEMORY_SIZE_MB = config.ram;
-    const child = process.spawn("SWGEmu.exe", args, {cwd: config.folder, env: env, detached: true, stdio: 'ignore'});
-    child.unref();
+    if (os.platform() === 'win32') {
+      const child = process.spawn("SWGEmu.exe", args, {cwd: config.folder, env: env, detached: true, stdio: 'ignore'});
+      child.unref();
+    } else {
+      process.exec('cd ' + config.folder + ';wine SWGEmu.exe', [args], function(error, stdout, stderr){});
+    }
 }
 
 swgOptionsBtn.addEventListener('click', event => {
-    const child = process.spawn("cmd", ["/c", path.join(config.folder, "SWGEmu_Setup.exe")], {cwd: config.folder, detached: true, stdio: 'ignore'});
-    child.unref();
+    if (os.platform() === 'win32') {
+        const child = process.spawn("cmd", ["/c", path.join(config.folder, "SWGEmu_Setup.exe")], {cwd: config.folder, detached: true, stdio: 'ignore'});
+        child.unref();
+      } else {
+        process.exec('cd ' + config.folder + ';wine SWGEmu_Setup.exe', function(error, stdout, stderr){});
+      }
 })
 
 gameConfigBtn.addEventListener('click', event => {
@@ -361,7 +370,7 @@ function disableAll(cancel) {
         cancelBtn.disabled = false;
     for (var child of modListBox.children) {
         child.children[0].disabled = true;
-    }    
+    }
 }
 
 function enableAll() {
@@ -373,7 +382,7 @@ function enableAll() {
     loginServerSel.disabled = false;
     for (var child of modListBox.children) {
         child.children[0].disabled = false;
-    }    
+    }
 }
 
 function saveConfig() {
