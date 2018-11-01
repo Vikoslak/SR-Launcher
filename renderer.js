@@ -168,7 +168,8 @@ function play() {
       const child = process.spawn("SWGEmu.exe", args, {cwd: config.folder, env: env, detached: true, stdio: 'ignore'});
       child.unref();
     } else {
-      process.exec('cd ' + config.folder + ';wine SWGEmu.exe', [args], function(error, stdout, stderr){});
+      const child = process.exec('wine SWGEmu.exe', {cwd: config.folder, env: env, detached: true, stdio: 'ignore'}, function(error, stdout, stderr){});
+      child.unref();
     }
 }
 
@@ -177,7 +178,8 @@ swgOptionsBtn.addEventListener('click', event => {
         const child = process.spawn("cmd", ["/c", path.join(config.folder, "SWGEmu_Setup.exe")], {cwd: config.folder, detached: true, stdio: 'ignore'});
         child.unref();
       } else {
-        process.exec('cd ' + config.folder + ';wine SWGEmu_Setup.exe', function(error, stdout, stderr){});
+        const child = process.exec('wine SWGEmu_Setup.exe', {cwd: config.folder, detached: true, stdio: 'ignore'}, function(error, stdout, stderr){});
+        child.unref();
       }
 })
 
