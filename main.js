@@ -4,27 +4,26 @@ const {autoUpdater} = require('electron-updater');
 const path = require('path');
 const url = require('url');
 const fs = require('fs');
+const mkdirp = require('mkdirp');
 
 var setupWindow = null;
+var err;
 
-var documentsdir = require('os').homedir() + '/Documents';
-var mygamesdir = documentsdir + '/My Games';
-var srdir =  mygamesdir + '/SWG - Sentinels Republic';
+var configDir = require('os').homedir() + '/Documents/My Games/SWG - Sentinels Republic';
 
-if (!fs.existsSync(documentsdir)) {
-  fs.mkdirSync(documentsdir);
-}
+// Create config directory
+if (!fs.existsSync(configDir))
+  err = mkdirp(configDir, function (err) {
+    if (err)
+      return err;
+  });
 
-if (!fs.existsSync(mygamesdir))
-  fs.mkdirSync(mygamesdir);
-
-if (!fs.existsSync(srdir))
-  fs.mkdirSync(srdir);
-
-/*log.transports.file.file = srdir + '/SR-Launcher-log.txt';
+log.transports.file.file = configDir + '/SR-Launcher-log.txt';
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
-log.info('App starting...');*/
+
+if (err !== undefined)
+  log.info(err);
 
 let mainWindow;
 

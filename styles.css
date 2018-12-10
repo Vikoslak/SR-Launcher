@@ -611,6 +611,12 @@ hr {
   background-color: #140d0d !important;
   border-color: #ab252e !important;
 }
+.sr-button-sm.full-width {
+  width: 100%;
+}
+.sr-button-sm.uppercase {
+  text-transform: uppercase;
+}
 
 input {
   height: 25px;
@@ -650,11 +656,6 @@ input#setup:disabled {
   background-color: rgba(200,200,200,0.2);
   padding: 4px 8px;
 }
-#setupBtn {
-  width: 100%;
-  text-transform: uppercase;
-}
-
 
 .config-label-sm {
   color: #555;
