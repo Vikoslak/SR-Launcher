@@ -245,6 +245,7 @@ hr {
 .patch-notes-wrapper .patch-notes-view {
   width: 406px;
   height: 100%;
+  opacity: 0;
   -webkit-transition: opacity 0.2s linear;
   transition: opacity 0.2s linear;
 }

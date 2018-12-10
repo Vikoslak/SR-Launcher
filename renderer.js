@@ -214,9 +214,9 @@ patchNotesView.addEventListener('will-navigate', function(e) {
     patchNotesView.stop();
 });
 
-patchNotesView.addEventListener('did-stop-loading', function(e) {
+patchNotesView.addEventListener('dom-ready', function(e) {
     patchNotesRefresh.className = 'patch-notes-refresh';
-    setTimeout(function(){patchNotesView.style.opacity = '1';},300);
+    patchNotesView.style.opacity = '1';
 });
 
 patchNotesRefresh.addEventListener('click', function(e) {
