@@ -29,12 +29,52 @@
           <div class="left-section">
             <div class="patch-notes-wrapper">
               <div id="patchNotesRefresh" class="patch-notes-refresh"></div>
-              <webview id="patchNotesView" class="patch-notes-view" src="http://swgsremu.com/updates/patch-notes"></webview>
+              <webview id="patchNotesView" class="patch-notes-view" src="https://swgsremu.com/updates/patch-notes"></webview>
             </div>
           </div>
           <div class="right-section">
             <div class="config-section-container">
               <div id="configSection" style="display:none">
+                <div id="configPromptOverlay" class="config-prompt-overlay">
+                  <div id="configPromptClose" class="closeConfigPrompt config-prompt-close" data-prompt-attr="" data-prompt-value=""></div>
+                  <div id="gameDirPrompt" class="config-prompt">
+                    <div class="config-section-header">Installation Directory</div>
+                    <div class="config-options">
+                      <div class="config-label">Error: Star Wars Galaxies Not Detected</div>
+                      <div class="config-row">
+                        <div class="config-col left-col">
+                          <p>A valid copy of Star Wars Galaxies could not be detected at the following directory:</p>
+                          <input id="gameDirPromptBox" type="text" class="input game-directory-input" disabled/>
+                        </div>
+                        <div class="config-col right-col">
+                          <p>Please <strong>click "Back"</strong> and run "Setup" on the selected directory or choose a directory with Star War Galaxies installed.</p>
+                          <p><strong>No changes were made.</strong></p>
+                        </div>
+                      </div>
+                      <div class="config-col-full center">
+                        <button class="closeConfigPrompt sr-button-sm uppercase">Back</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="loginServerPrompt" class="config-prompt">
+                    <div class="config-section-header">Login Server</div>
+                    <div class="config-options">
+                      <div class="config-label">Warning!</div>
+                      <div class="config-row">
+                        <div class="config-col left-col">
+                          <p>Changing your login server will modify your Star Wars Galaxies installation.</p>
+                          <p>This could mean redownloading a large number of files.</p>
+                          <button id="loginServerConfirm" class="sr-button-sm uppercase">Change Server</button>
+                          <button class="closeConfigPrompt sr-button-sm uppercase">Back</button>
+                        </div>
+                        <div class="config-col right-col">
+                          <p>It is recommend to have a back up of your game files just in case.</p>
+                          <p>Click <strong>Change Server</strong> to change your login server and continue, or "Back" to return to the previous menu.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="config-section-header">Game Config</div>
                 <div class="config-options">
                   <div class="config-col left-col">
@@ -42,15 +82,15 @@
                       <div class="config-label">Game Files
                       </div>
                       <div>
-                        <button class="tooltip float-right" tooltip="Selecting &#34;Change&#34; will run Setup. No files will be lost." tooltip-position="top">?</button>
+                        <button class="tooltip float-right" tooltip="Change the installation directory of Sentinels Republic." tooltip-position="top">?</button>
                         <div class="config-label-sm">Installation Directory</div>
                       </div>
                       <div class="row">
                         <div class="column col-4">
-                          <input id="setup" type="text" class="input" disabled/>
+                          <input id="gameDir" type="text" class="input game-directory-input" disabled/>
                         </div>
                         <div class="column col-2 browse-column">
-                          <button id="setupBtn" class="sr-button-sm full-width uppercase">Change</button>
+                          <button id="changeDirBtn" class="sr-button-sm full-width uppercase">Change</button>
                         </div>
                       </div>
                     </div>
@@ -60,15 +100,13 @@
                         <div class="column col-2">
                           <button class="tooltip float-right" tooltip="Verify the integrity of your game files. This could take awhile." tooltip-position="top">?</button>
                           <div class="config-label-sm">Full Scan</div>
-                          <button id="verifyBtn" class="sr-button-sm">Verify Files</button>
+                          <button id="verifyBtn" class="sr-button-sm full-width">Verify Files</button>
                         </div>
-                        <div class="column col-4 browse-column">
-                          <button class="tooltip float-right" tooltip="Switching a login server will convert your installation. Please do not change your primary installation to a test version without having a backup." tooltip-position="top">?</button>
-                          <div class="config-label-sm">Login Server</div>
-                          <select id="loginServerSelect" class="full-width">
-                            <option value="live">Live Server</option>
-                            <option value="test">Test Server</option>
-                          </select>
+                        <div class="column col-2"></div>
+                        <div class="column col-2">
+                          <button class="tooltip float-right" tooltip="Rerun the setup process for Sentinels Republic. No personal data will be lost." tooltip-position="top">?</button>
+                          <div class="config-label-sm">Game Setup</div>
+                          <button id="configSetupBtn" class="sr-button-sm full-width">Run Setup</button>
                         </div>
                       </div>
                     </div>
@@ -104,9 +142,18 @@
                           </select>
                         </div>
                       </div>
+                      <hr>
+                      <div class="row">
+                        <div class="column col-6">
+                          <button class="tooltip float-right" tooltip="Switching a login server will convert your installation. Please do not change your primary installation to a test version without having a backup." tooltip-position="top">?</button>
+                          <div class="config-label-sm">Login Server</div>
+                          <select id="loginServerSelect" class="full-width" data-previous="">
+                            <option value="live">Live Server</option>
+                            <option value="test">Test Server</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
-                    <div class="right"></div>
-                    <ul id="modlist" class=""></ul>
                   </div>
                 </div>
                 <div class="config-section-arrow"></div>

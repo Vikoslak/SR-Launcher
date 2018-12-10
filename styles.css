@@ -73,6 +73,10 @@ html {
   -webkit-app-region: drag !important;
 }
 
+.center {
+  text-align: center;
+}
+
 .launcher-wrap {
   width: 1130px;
   height: 610px;
@@ -576,7 +580,9 @@ hr {
   display: flex;
   padding: 12px 7px;
 }
-
+.config-row {
+  display: flex;
+}
 .config-col {
   width: 50%;
   padding: 0 7px;
@@ -585,6 +591,9 @@ hr {
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   flex-basis: 50%;
+}
+.config-col-full {
+  padding: 0 7px;
 }
 .row {
   margin-bottom: 4px;
@@ -684,7 +693,7 @@ input:focus {
   width: 100%;
 }
 
-input#setup:disabled {
+.game-directory-input:disabled {
   font-family: 'Helvetica', 'Arial', sans-serif;
   height: 25px;
   width: 100%;
@@ -717,10 +726,6 @@ select:focus {
   border-bottom: 1px solid #b80000;
   outline: none !important;
 }
-
-
-
-
 
 .float-right {
   float: right;
@@ -834,6 +839,63 @@ button.tooltip:hover {
    opacity:1
 }
 
+.config-prompt-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+.config-prompt-overlay .config-options {
+  height: 169px;
+  width: 100%;
+  background-color: #fbfbfb;
+  display: block;
+}
+.config-prompt {
+  display: none;
+}
+.config-prompt.active {
+  display: block;
+}
+.config-prompt-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+  width: 12px;
+  height: 10px;
+  cursor: pointer;
+  padding: 8px;
+  box-sizing: content-box;
+  background-image: url("./img/buttons/prompt-close.png");
+  background-size: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+.config-prompt-close:hover {
+  opacity: 0.8;
+}
+.config-prompt-close:focus, .config-prompt-close:active {
+  opacity: 1;
+}
+.config-prompt-overlay .config-label {
+  margin: 0 7px 4px;
+}
+.config-prompt p {
+  font-size: 12px;
+  margin: 9px 0;
+}
+
+#gameDirPrompt .alert-msg {
+  margin-top: 0;
+}
+#gameDirPrompt .config-col-full {
+  margin-top: 8px;
+}
+
 .button.game-setup {
   -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
@@ -844,6 +906,29 @@ button.tooltip:hover {
   -webkit-animation: 0;
   animation: 0;
   background-color: #570707 !important;
+}
+
+.alert-msg {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  padding: 9px 12px;
+  margin-top: 12px;
+  text-align: center;
+  border-radius: 2px;
+  border-width: 1px;
+  border-style: solid;
+}
+.alert-msg strong {
+  margin-right: 8px;
+}
+.alert-msg.success {
+  color: #fff;
+  background-color: rgba(20,20,20, 0.8);
+  border-color: #570707;
+}
+.alert-msg.fail {
+  color: #fff;
+  background-color: rgba(87, 7, 7, 0.8);
+  border-color: #b80000;
 }
 
 @keyframes noticeMeSenpai {

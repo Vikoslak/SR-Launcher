@@ -14,10 +14,6 @@ const os = require('os');
 const playBtn = document.getElementById('play');
 //const profcalcBtn = document.getElementById('profcalc');
 
-const setupBox = document.getElementById('setup');
-const setupBtn = document.getElementById('setupBtn');
-const verifyBtn = document.getElementById('verifyBtn');
-
 const cancelBtn = document.getElementById('cancelBtn');
 
 const progressBar = document.getElementById('progress');
@@ -26,15 +22,24 @@ const progressText = document.getElementById('progresstext');
 const minBtn = document.getElementById('minimize');
 const closeBtn = document.getElementById('close');
 
-const ramSel = document.getElementById('ram');
-const fpsSel = document.getElementById('fps');
-const zoomSel = document.getElementById('zoom');
-
-const loginServerSel = document.getElementById('loginServerSelect');
-
 const swgOptionsBtn = document.getElementById('swgOptionsBtn');
 const gameConfigBtn = document.getElementById('gameConfigBtn');
 const gameConfigSection = document.getElementById('configSection');
+
+const configPromptOverlay = document.getElementById("configPromptOverlay");
+const configPromptClose = document.getElementById("configPromptClose");
+const closeConfigPrompt = document.getElementsByClassName("closeConfigPrompt");
+const gameDirBox = document.getElementById('gameDir');
+const changeDirBtn = document.getElementById('changeDirBtn');
+const verifyBtn = document.getElementById('verifyBtn');
+const configSetupBtn = document.getElementById('configSetupBtn');
+
+const loginServerSel = document.getElementById('loginServerSelect');
+const loginServerConfirm = document.getElementById('loginServerConfirm');
+
+const ramSel = document.getElementById('ram');
+const fpsSel = document.getElementById('fps');
+const zoomSel = document.getElementById('zoom');
 
 // External Links
 const headerLinks = document.getElementById("headerLinks");
@@ -52,7 +57,7 @@ var config = {folder: 'C:\\SREmu'};
 
 if (fs.existsSync(configFile))
     config = JSON.parse(fs.readFileSync(configFile));
-setupBox.value = config.folder;
+gameDirBox.value = config.folder;
 var needSave = false;
 if (!config.fps) {
     config.fps = 60;
@@ -74,6 +79,7 @@ if (!config.login) {
     needSave = true;
 }
 loginServerSel.value = config.login;
+loginServerSel.setAttribute("data-previous", config.login);
 if (needSave) saveConfig();
 
 getServerStatus(config.login);
@@ -123,7 +129,7 @@ ipc.on('setup-begin-install', function (event, args) {
     resetProgress();
     if (fs.existsSync(configFile)) {
         config = JSON.parse(fs.readFileSync(configFile));
-        setupBox.value = config.folder;
+        gameDirBox.value = config.folder;
     }
     // Cleanup
     if (args.cleanup == true) {
@@ -207,6 +213,7 @@ patchNotesView.addEventListener('will-navigate', function(e) {
         shell.openExternal(e.url);
     patchNotesView.stop();
 });
+
 patchNotesView.addEventListener('did-stop-loading', function(e) {
     patchNotesRefresh.className = 'patch-notes-refresh';
     setTimeout(function(){patchNotesView.style.opacity = '1';},300);
@@ -222,11 +229,6 @@ patchNotesRefresh.addEventListener('click', function(e) {
 //    Game Config
 // -----------------
 
-// "Change" button pressed
-setupBtn.addEventListener('click', function (event) {
-    ipc.send('setup-game');
-});
-
 // SWG Config
 fpsSel.addEventListener('change', event => {
     config.fps = event.target.value;
@@ -241,21 +243,89 @@ zoomSel.addEventListener('change', event => {
     saveConfig();
 });
 
-loginServerSel.addEventListener('change', event => {
-    config.login = event.target.value;
+// "Change" button pressed
+changeDirBtn.addEventListener('click', function (event) {
+    ipc.send('open-directory-dialog', 'selected-directory');
+});
+
+gameDirBox.addEventListener('keyup', event => {
+    config.folder = event.target.value;
     saveConfig();
+});
+
+ipc.on('selected-directory', function (event, dir) {
+    configPromptClose.setAttribute("data-prompt-attr", "gameDir");
+    configPromptClose.setAttribute("data-prompt-value", gameDirBox.value);
+    if (fs.existsSync(path.join(dir, 'qt-mt305.dll'))) {
+        gameDirBox.value = dir;
+        config.folder = dir;
+        saveConfig();
+        disableAll(true);
+        resetProgress();
+        install.install(config.folder, config.folder, false);
+    } else {
+        var gameDirPromptDir = document.getElementById('gameDirPromptDir');
+        gameDirPromptBox.value = dir;
+        configOverlayPrompt("gameDirPrompt");
+    }
+});
+
+// Config "Run Setup" button pressed
+configSetupBtn.addEventListener('click', function (event) {
+    ipc.send('setup-game');
+});
+
+// Config "Login Server" select pressed
+loginServerSel.addEventListener('change', event => {
+    configPromptClose.setAttribute("data-prompt-attr", "loginServerSelect");
+    configPromptClose.setAttribute("data-prompt-value", loginServerSel.getAttribute("data-previous"));
+    configOverlayPrompt("loginServerPrompt");
+});
+
+loginServerConfirm.addEventListener('click', function (event) {
+    config.login = loginServerSel.value;
+    saveConfig();
+    loginServerSel.setAttribute("data-previous", config.login);
     activeServer.className = "no-opacity";
     setTimeout(function(){activeServer.className = "fade-in";},200);
     activeServer.innerHTML = server[config.login][0].address;
     serverStatus.className = "no-opacity";
     setTimeout(function(){serverStatus.className = "fade-in";},200);
     getServerStatus(config.login);
-    if(confirm("It is recommended to run a \"Full Scan\" to verify your game files after switching login servers.\n\nYou may ignore this message by selecting \"Cancel\" and restart the launcher to attempt to download any new patches, but existing files will not be patched and you may encounter issues.\n\nDo not change the login server for your primary installation, always have a back up!\n\nSelect \"OK\" to verify your game files.")) {
-        verifyFiles();
-    }
+    disableAll(true);
+    resetProgress();
+    install.install(config.folder, config.folder, false);
+    configOverlayClose(false);
 });
 
+function configOverlayPrompt(promptID) {
+    var i, prompts;
+    configPromptOverlay.style.display = "block";
+    prompts = configPromptOverlay.getElementsByClassName("config-prompt");
+    for (i = 0; i < prompts.length; i++)
+        prompts[i].className = prompts[i].className.replace(" active", "");
+    document.getElementById(promptID).classList.add("active");
+}
 
+Object.entries(closeConfigPrompt).map(( object ) => {
+    object[1].addEventListener("click", function() {
+        configOverlayClose(true);
+    });
+});
+
+function configOverlayClose(exit) {
+    if (exit == true) {
+        var promptAttr = configPromptClose.getAttribute("data-prompt-attr");
+        var promptVal = configPromptClose.getAttribute("data-prompt-value");
+        if (promptAttr != '' && promptVal != '')
+            document.getElementById(promptAttr).value = promptVal;
+        configPromptClose.setAttribute("data-prompt-attr", "");
+        configPromptClose.setAttribute("data-prompt-value", "");
+    }
+    configPromptOverlay.style.display = "none";
+}
+
+// Progress bar cancel button
 cancelBtn.addEventListener('click', function(event) {
     install.cancel();
     progressBar.style.width = '100%';
@@ -302,7 +372,7 @@ install.progress = function(completed, total) {
         lastTime = time;
     }
     if (progressText.className == 'complete') progressText.className = 'active';
-        progressText.innerHTML = Math.trunc(completed * 100 / total) + '% (' + rate.toPrecision(3) + units + ')';
+        progressText.innerHTML = Math.trunc(completed * 100 / total) + '% (' + parseFloat(rate.toPrecision(3)) + units + ')';
         progressBar.style.width = (completed * 100 / total) + '%';
     if (completed == total) {
         enableAll();
@@ -332,8 +402,10 @@ if (fs.existsSync(path.join(config.folder, 'qt-mt305.dll'))) {
     playBtn.disabled = false;
     playBtn.className = "button game-setup";
     verifyBtn.disabled = true;
-    setupBtn.disabled = true;
+    changeDirBtn.disabled = true;
+    configSetupBtn.disabled = true;
     loginServerSel.disabled = true;
+    loginServerConfirm.disabled = true;
     swgOptionsBtn.disabled = true;
     cancelBtn.disabled = true;
 }
@@ -341,8 +413,10 @@ if (fs.existsSync(path.join(config.folder, 'qt-mt305.dll'))) {
 function disableAll(cancel) {
     verifyBtn.disabled = true;
     playBtn.disabled = true;
-    setupBtn.disabled = true;
+    changeDirBtn.disabled = true;
+    configSetupBtn.disabled = true;
     loginServerSel.disabled = true;
+    loginServerConfirm.disabled = true;
     if (cancel == true)
         cancelBtn.disabled = false;
 }
@@ -350,10 +424,12 @@ function disableAll(cancel) {
 function enableAll() {
     verifyBtn.disabled = false;
     playBtn.disabled = false;
-    setupBtn.disabled = false;
+    changeDirBtn.disabled = false;
+    configSetupBtn.disabled = false;
     swgOptionsBtn.disabled = false;
     cancelBtn.disabled = true;
     loginServerSel.disabled = false;
+    loginServerConfirm.disabled = false;
 }
 
 function saveConfig() {
