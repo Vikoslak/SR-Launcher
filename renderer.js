@@ -19,6 +19,7 @@ const cancelBtn = document.getElementById('cancelBtn');
 const progressBar = document.getElementById('progress');
 const progressText = document.getElementById('progresstext');
 
+const helpBtn = document.getElementById('help');
 const minBtn = document.getElementById('minimize');
 const closeBtn = document.getElementById('close');
 
@@ -30,6 +31,7 @@ const configPromptOverlay = document.getElementById("configPromptOverlay");
 const configPromptClose = document.getElementById("configPromptClose");
 const closeConfigPrompt = document.getElementsByClassName("closeConfigPrompt");
 const gameDirBox = document.getElementById('gameDir');
+const helpLinks = document.getElementById('helpLinks');
 const changeDirBtn = document.getElementById('changeDirBtn');
 const verifyBtn = document.getElementById('verifyBtn');
 const configSetupBtn = document.getElementById('configSetupBtn');
@@ -86,12 +88,16 @@ getServerStatus(config.login);
 activeServer.innerHTML = server[config.login][0].address;
 
 function getServerStatus(serverStatusLogin) {
-    request({url:server[serverStatusLogin][0].statusUrl, json:true}, function(err, response, body) {
-        if (err) return console.error(err);
-        if (body.status != undefined) {
-            serverStatus.innerHTML = body.status;
-        }
-    });
+    if (serverStatusLogin != "live") {
+        serverStatus.innerHTML = "unknown";
+    } else {
+        request({url:server[serverStatusLogin][0].statusUrl, json:true}, function(err, response, body) {
+            if (err) return console.error(err);
+            if (body.status != undefined) {
+                serverStatus.innerHTML = body.status;
+            }
+        });
+    }
 }
 
 minBtn.addEventListener('click', event => remote.getCurrentWindow().minimize());
@@ -192,6 +198,7 @@ gameConfigBtn.addEventListener('click', event => {
     } else {
         gameConfigSection.style.display = 'none';
         gameConfigBtn.className = "option-button sr-button sr-btn-icon sr-btn-icon-left";
+        configOverlayClose(true);
     }
 });
 
@@ -267,6 +274,7 @@ ipc.on('selected-directory', function (event, dir) {
         var gameDirPromptDir = document.getElementById('gameDirPromptDir');
         gameDirPromptBox.value = dir;
         configOverlayPrompt("gameDirPrompt");
+        helpBtn.disabled = true;
     }
 });
 
@@ -280,6 +288,7 @@ loginServerSel.addEventListener('change', event => {
     configPromptClose.setAttribute("data-prompt-attr", "loginServerSelect");
     configPromptClose.setAttribute("data-prompt-value", loginServerSel.getAttribute("data-previous"));
     configOverlayPrompt("loginServerPrompt");
+    helpBtn.disabled = true;
 });
 
 loginServerConfirm.addEventListener('click', function (event) {
@@ -298,6 +307,32 @@ loginServerConfirm.addEventListener('click', function (event) {
     configOverlayClose(false);
 });
 
+// Help / Info button
+helpBtn.addEventListener('click', function (event) {
+    if (gameConfigSection.style.display == 'none') {
+        gameConfigSection.style.display = 'block';
+        gameConfigBtn.className = "option-button sr-button sr-btn-icon sr-btn-icon-left active";
+        configOverlayPrompt("helpInfoPrompt");
+    } else {
+        if (document.getElementById("configPromptOverlay").style.display == "none") {
+            configOverlayPrompt("helpInfoPrompt");
+        } else {
+            if (document.getElementById("helpInfoPrompt").className == "config-prompt active") {
+                gameConfigSection.style.display = 'none';
+                gameConfigBtn.className = "option-button sr-button sr-btn-icon sr-btn-icon-left";
+                // Run exit task in case user opened help on top of already opened prompt
+                configOverlayClose(true);
+            }
+            // Another prompt is open
+        }
+    }
+});
+
+helpLinks.addEventListener('click', function(e) {
+    e.preventDefault();
+    shell.openExternal(e.target.href);
+});
+
 function configOverlayPrompt(promptID) {
     var i, prompts;
     configPromptOverlay.style.display = "block";
@@ -307,6 +342,7 @@ function configOverlayPrompt(promptID) {
     document.getElementById(promptID).classList.add("active");
 }
 
+// Close prompt button pressed
 Object.entries(closeConfigPrompt).map(( object ) => {
     object[1].addEventListener("click", function() {
         configOverlayClose(true);
@@ -314,15 +350,17 @@ Object.entries(closeConfigPrompt).map(( object ) => {
 });
 
 function configOverlayClose(exit) {
+    // Performs exit process for set values
     if (exit == true) {
         var promptAttr = configPromptClose.getAttribute("data-prompt-attr");
         var promptVal = configPromptClose.getAttribute("data-prompt-value");
         if (promptAttr != '' && promptVal != '')
             document.getElementById(promptAttr).value = promptVal;
-        configPromptClose.setAttribute("data-prompt-attr", "");
-        configPromptClose.setAttribute("data-prompt-value", "");
     }
+    configPromptClose.setAttribute("data-prompt-attr", "");
+    configPromptClose.setAttribute("data-prompt-value", "");
     configPromptOverlay.style.display = "none";
+    helpBtn.disabled = false;
 }
 
 // Progress bar cancel button
@@ -406,6 +444,7 @@ if (fs.existsSync(path.join(config.folder, 'qt-mt305.dll'))) {
     configSetupBtn.disabled = true;
     loginServerSel.disabled = true;
     loginServerConfirm.disabled = true;
+    helpBtn.disabled = true;
     swgOptionsBtn.disabled = true;
     cancelBtn.disabled = true;
 }
@@ -417,6 +456,7 @@ function disableAll(cancel) {
     configSetupBtn.disabled = true;
     loginServerSel.disabled = true;
     loginServerConfirm.disabled = true;
+    helpBtn.disabled = true;
     if (cancel == true)
         cancelBtn.disabled = false;
 }
@@ -430,6 +470,7 @@ function enableAll() {
     cancelBtn.disabled = true;
     loginServerSel.disabled = false;
     loginServerConfirm.disabled = false;
+    helpBtn.disabled = false;
 }
 
 function saveConfig() {

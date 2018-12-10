@@ -162,6 +162,49 @@ html {
   background-image: url("./img/buttons/window-close.png");
 }
 
+.window-management #help {
+  color: #fff;
+  text-shadow: 0 0 9px #000, 0 0 4px #000;
+  background-color: rgba(20, 13, 13, 0.4);
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: -9px;
+  margin: 0 1px;
+  padding: 0;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 18px;
+  text-transform: lowercase;
+  text-align: center;
+  cursor: help;
+  border-radius: 100%;
+  border: none;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.window-management #help:hover {
+  background-color: rgba(20, 13, 13, 0.8);
+}
+.window-management #help:disabled {
+  cursor: not-allowed;
+}
+.window-management #help:hover:disabled {
+  background-color: rgba(20, 13, 13, 0.4);
+}
+.window-management #help[tooltip]::after,.window-management #help[tooltip]::before {
+  display: none;
+}
+.window-management #help:disabled[tooltip]::after,.window-management #help:disabled[tooltip]::before {
+  display: block;
+}
+.window-management #help[tooltip]::after {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+}
+
 a {
   color: #b80000;
   text-decoration: none;
@@ -667,6 +710,21 @@ hr {
   text-transform: uppercase;
 }
 
+a.sr-button-sm {
+  display: inline-block;
+}
+a.sr-button-sm:hover {
+  color: #fff;
+}
+a.sr-button-sm:active {
+  color: #fff;
+}
+a.sr-button-sm:focus {
+  color: #fff;
+  border-color: #b80000;
+  background-color: #b80000;
+}
+
 input {
   height: 25px;
   font-size: 12px;
@@ -853,6 +911,25 @@ button.tooltip:hover {
   background-color: #fbfbfb;
   display: block;
 }
+.config-prompt-overlay .config-prompt-arrow {
+  position: absolute;
+  bottom: -26px;
+  right: 65px;
+  height: 30px;
+  width: 42px;
+  overflow: hidden;
+}
+.config-prompt-overlay .config-prompt-arrow:after {
+  content: '';
+  display: block;
+  position: relative;
+  top: -15px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: #fbfbfb;
+  transform: rotate(45deg);
+}
 .config-prompt {
   display: none;
 }
@@ -895,6 +972,19 @@ button.tooltip:hover {
 }
 #gameDirPrompt .config-col-full {
   margin-top: 8px;
+}
+
+.config-prompt-overlay #helpInfoPrompt p {
+  margin:  0 0 9px;
+}
+.config-prompt-overlay #helpInfoPrompt .config-label {
+  margin: 0 0 9px;
+}
+.config-prompt-overlay #helpInfoPrompt .config-options {
+  background-image: url("./img/sr-jedi-tiny-grey.jpg");
+  background-size: auto;
+  background-position: 96% 92%;
+  background-repeat: no-repeat;
 }
 
 .button.game-setup {

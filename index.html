@@ -12,15 +12,16 @@
       <div class="launcher-bg"></div>
       <div class="main-section">
         <div class="header-section">
-          <img href="http://www.swgsremu.com" class="sr-logo draggable" src="./img/img-sr-logo.png" />
+          <img class="sr-logo draggable" src="./img/img-sr-logo.png" />
           <div id="headerLinks">
-            <a href="http://www.swgsremu.com/updates" class="header-link patch-notes-title text-link">Patch Notes</a>
-            <a href="http://www.swgsremu.com/" class="header-link text-link">Website</a>
-            <a href="http://www.swgsremu.com/forum" class="header-link text-link">Forums</a>
+            <a href="https://www.swgsremu.com/updates" class="header-link patch-notes-title text-link">Patch Notes</a>
+            <a href="https://www.swgsremu.com/" class="header-link text-link">Website</a>
+            <a href="https://www.swgsremu.com/forum" class="header-link text-link">Forums</a>
             <a href="https://discord.gg/k8QK2MB" class="header-link btn-links btn-discord"></a>
             <a href="https://www.facebook.com/SentinelsRepublicEmu/" class="header-link btn-links btn-facebook"></a>
           </div>
           <div class="window-management">
+            <button id="help" tooltip="Please close all prompts to access the help menu." tooltip-position="left">?</button>
             <button id="minimize" class="window-button"></button>
             <button id="close" class="window-button"></button>
           </div>
@@ -36,43 +37,70 @@
             <div class="config-section-container">
               <div id="configSection" style="display:none">
                 <div id="configPromptOverlay" class="config-prompt-overlay" style="display:none">
-                  <div id="configPromptClose" class="closeConfigPrompt config-prompt-close" data-prompt-attr="" data-prompt-value=""></div>
-                  <div id="gameDirPrompt" class="config-prompt">
-                    <div class="config-section-header">Installation Directory</div>
-                    <div class="config-options">
-                      <div class="config-label">Error: Star Wars Galaxies Not Detected</div>
-                      <div class="config-row">
-                        <div class="config-col left-col">
-                          <p>A valid copy of Star Wars Galaxies could not be detected at the following directory:</p>
-                          <input id="gameDirPromptBox" type="text" class="input game-directory-input" disabled/>
+                  <div class="config-prompt-inner">
+                    <div id="configPromptClose" class="closeConfigPrompt config-prompt-close" data-prompt-attr="" data-prompt-value=""></div>
+                    <div id="gameDirPrompt" class="config-prompt">
+                      <div class="config-section-header">Installation Directory</div>
+                      <div class="config-options">
+                        <div class="config-label">Error: Star Wars Galaxies Not Detected</div>
+                        <div class="config-row">
+                          <div class="config-col left-col">
+                            <p>A valid copy of Star Wars Galaxies could not be detected at the following directory:</p>
+                            <input id="gameDirPromptBox" type="text" class="input game-directory-input" disabled/>
+                          </div>
+                          <div class="config-col right-col">
+                            <p>Please <strong>click "Back"</strong> and run "Setup" on the selected directory or choose a directory with Star War Galaxies installed.</p>
+                            <p><strong>No changes were made.</strong></p>
+                          </div>
                         </div>
-                        <div class="config-col right-col">
-                          <p>Please <strong>click "Back"</strong> and run "Setup" on the selected directory or choose a directory with Star War Galaxies installed.</p>
-                          <p><strong>No changes were made.</strong></p>
-                        </div>
-                      </div>
-                      <div class="config-col-full center">
-                        <button class="closeConfigPrompt sr-button-sm uppercase">Back</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="loginServerPrompt" class="config-prompt">
-                    <div class="config-section-header">Login Server</div>
-                    <div class="config-options">
-                      <div class="config-label">Warning!</div>
-                      <div class="config-row">
-                        <div class="config-col left-col">
-                          <p>Changing your login server will modify your Star Wars Galaxies installation.</p>
-                          <p>This could mean redownloading a large number of files.</p>
-                          <button id="loginServerConfirm" class="sr-button-sm uppercase">Change Server</button>
+                        <div class="config-col-full center">
                           <button class="closeConfigPrompt sr-button-sm uppercase">Back</button>
                         </div>
-                        <div class="config-col right-col">
-                          <p>It is recommend to have a back up of your game files just in case.</p>
-                          <p>Click <strong>Change Server</strong> to change your login server and continue, or "Back" to return to the previous menu.</p>
+                      </div>
+                    </div>
+                    <div id="loginServerPrompt" class="config-prompt">
+                      <div class="config-section-header">Login Server</div>
+                      <div class="config-options">
+                        <div class="config-label">Warning!</div>
+                        <div class="config-row">
+                          <div class="config-col left-col">
+                            <p>Changing your login server will modify your Star Wars Galaxies installation.</p>
+                            <p>This could mean redownloading a large number of files.</p>
+                            <button id="loginServerConfirm" class="sr-button-sm uppercase">Change Server</button>
+                            <button class="closeConfigPrompt sr-button-sm uppercase">Back</button>
+                          </div>
+                          <div class="config-col right-col">
+                            <p>It is recommend to have a back up of your game files just in case.</p>
+                            <p>Click <strong>Change Server</strong> to change your login server and continue, or "Back" to return to the previous menu.</p>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <div id="helpInfoPrompt" class="config-prompt">
+                      <div class="config-section-header">Help and Information</div>
+                      <div class="config-options">
+                        <div id="helpLinks" class="config-row">
+                          <div class="config-col left-col">
+                            <div class="config-label">FAQ</div>
+                            <a class="sr-button-sm" href="https://swgsremu.com/support/faq/">FAQ Home</a>
+                            <a class="sr-button-sm" href="https://swgsremu.com/support/faq/launcher-troubleshooting/">Launcher FAQ</a>
+                            <a class="sr-button-sm" href="https://swgsremu.com/support/faq/launcher-troubleshooting/">Game FAQ</a>
+                            <br><br>
+                            <div class="config-label">Support</div>
+                            <a class="sr-button-sm" href="https://swgsremu.com/support/">Support Page</a>
+                            <a class="sr-button-sm" href="https://www.swgsremu.com/forum/viewforum.php?f=63">Help Forums</a>
+                            <a class="sr-button-sm" href="https://discordapp.com/invite/k8QK2MB">Discord</a>
+                          </div>
+                          <div class="config-col right-col">
+                            <p>Developed by <strong>Tyclo</strong> of <strong>Sentinels Republic</strong> <a href="https://github.com/DesporoWace/SR-Launcher">Public Repository</a></p>
+                            <p>Based on <a href="https://github.com/dpwhittaker/RoC-Launcher">RoC Launcher </a>by <strong>dpwhittaker</strong> CC0 1.0 License</p>
+                            <hr>
+                            <p>Thank you for playing on Sentinels Republic</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="config-prompt-arrow"></div>
                   </div>
                 </div>
                 <div class="config-section-header">Game Config</div>
@@ -166,7 +194,7 @@
               </div>
               <div id="mainButtonLinks">
                 <a href="http://galaxyharvester.net/ghHome.py?" class="button-link button-resources"></a>
-                <a href="http://www.swgsremu.com/skillplanner/#/" class="button-link button-skillplanner"></a>
+                <a href="https://www.swgsremu.com/skillplanner/#/" class="button-link button-skillplanner"></a>
                 <a href="http://www.sentinelsgalaxy.com/mantis/login_page.php" class="button-link button-mantis"></a>
                 <a href="https://topg.org/swg-private-servers/in-473411" class="button-link button-topg"></a>
                 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SZ2GSDDKKFYVA" class="button-link button-donate"></a>
