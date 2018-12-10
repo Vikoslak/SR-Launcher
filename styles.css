@@ -52,6 +52,23 @@ html {
     100% { opacity: 1; }
 }
 
+.fade-out {
+  -webkit-animation: fadeout 0.5s;
+  animation: fadeout 0.5s;
+}
+
+@keyframes fadeout {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@-webkit-keyframes fadeout {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
 .draggable {
   -webkit-app-region: drag !important;
 }
@@ -217,14 +234,36 @@ hr {
 .patch-notes-wrapper {
   height: 365px;
   width: 100%;
+  position: relative;
   background-color: rgba(255,255,255,0.9);
   border: 2px solid #ddd;
 }
 .patch-notes-wrapper .patch-notes-view {
   width: 406px;
   height: 100%;
-  -webkit-animation: fadein 1s;
-  animation: fadein 1s;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+.patch-notes-wrapper .patch-notes-refresh {
+  position: absolute;
+  top: 14px;
+  right: 24px;
+  width: 16px;
+  height: 16px;
+  background-image: url("./img/buttons/btn-refresh.png");
+  background-size: auto;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+.patch-notes-wrapper:hover .patch-notes-refresh {
+  opacity: 0.5;
+}
+.patch-notes-wrapper:hover .patch-notes-refresh:hover {
+  opacity: 0.8;
 }
 
 .right-section-container {
@@ -817,4 +856,18 @@ button.tooltip:hover {
   0%  { background-color: #b80000; }
   20% { background-color: #570707; }
   40% { background-color: #b80000; }
+}
+
+.spinner {
+  animation: spin 3s infinite linear;
+  -webkit-animation: spin 1s infinite linear;
+}
+
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }

@@ -40,6 +40,7 @@ const gameConfigSection = document.getElementById('configSection');
 const headerLinks = document.getElementById("headerLinks");
 const mainButtonLinks = document.getElementById('mainButtonLinks');
 const patchNotesView = document.getElementById('patchNotesView');
+const patchNotesRefresh = document.getElementById('patchNotesRefresh');
 
 const serverStatus = document.getElementById('serverStatus');
 const activeServer = document.getElementById('activeServer');
@@ -205,6 +206,16 @@ patchNotesView.addEventListener('will-navigate', function(e) {
     if (protocol === 'http:' || protocol === 'https:')
         shell.openExternal(e.url);
     patchNotesView.stop();
+});
+patchNotesView.addEventListener('did-stop-loading', function(e) {
+    patchNotesRefresh.className = 'patch-notes-refresh';
+    setTimeout(function(){patchNotesView.style.opacity = '1';},300);
+});
+
+patchNotesRefresh.addEventListener('click', function(e) {
+    patchNotesRefresh.className = 'patch-notes-refresh spinner';
+    patchNotesView.reloadIgnoringCache();
+    patchNotesView.style.opacity = '0';
 });
 
 // -----------------
