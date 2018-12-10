@@ -3,8 +3,7 @@ const path = require('path');
 const request = require('request');
 const server = require('./json/server');
 
-module.exports.getManifest = function(mods, fullScan, emuPath, checkFiles) {
-    if (!mods) mods = [];
+module.exports.getManifest = function(fullScan, emuPath, checkFiles) {
     var files = require('./json/required');
 
     const configFile = require('os').homedir() + '/Documents/My Games/SWG - Sentinels Republic/SR-Launcher-config.json';
@@ -24,12 +23,7 @@ module.exports.getManifest = function(mods, fullScan, emuPath, checkFiles) {
     }
     request({url:server[config.login][0].manifestUrl, json:true}, function(err, response, body) {
         if (err) return console.error(err);
-
-        var allmods = [];
-        for (var mod in body) if (mod != 'required') { allmods.push(mod);console.log(mod); };
-        if (module.exports.modList) module.exports.modList(allmods);
         files = unionByName(files, body.required);
-        for (var mod of mods) files = unionByName(files, body[mod] || []);
         if (checkFiles) checkFiles(files);
     });
 }
@@ -45,10 +39,10 @@ function unionByName(a, b) {
 
 var forks = [];
 var canceling = true;
-module.exports.install = function(swgPath, emuPath, mods, fullScan) {
+module.exports.install = function(swgPath, emuPath, fullScan) {
     const child_process = require('child_process');
     canceling = false;
-    module.exports.getManifest(mods, fullScan, emuPath, checkFiles);
+    module.exports.getManifest(fullScan, emuPath, checkFiles);
 
     var fileIndex = 0;
     var completedBytes = 0;

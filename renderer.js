@@ -19,7 +19,6 @@ const setupBtn = document.getElementById('setupBtn');
 const verifyBtn = document.getElementById('verifyBtn');
 
 const cancelBtn = document.getElementById('cancelBtn');
-const modListBox = document.getElementById('modlist');
 
 const progressBar = document.getElementById('progress');
 const progressText = document.getElementById('progresstext');
@@ -54,10 +53,6 @@ if (fs.existsSync(configFile))
     config = JSON.parse(fs.readFileSync(configFile));
 setupBox.value = config.folder;
 var needSave = false;
-if (!config.mods) {
-    config.mods = [];
-    needSave = true;
-}
 if (!config.fps) {
     config.fps = 60;
     needSave = true;
@@ -145,10 +140,10 @@ ipc.on('setup-begin-install', function (event, args) {
     }
     if (args.swgdir !== '') {
         console.log('Copying over files.');
-        install.install(args.swgdir, config.folder, config.mods);
+        install.install(args.swgdir, config.folder);
     }
     else {
-        install.install(config.folder, config.folder, config.mods, true);
+        install.install(config.folder, config.folder, true);
     }
 });
 
@@ -304,37 +299,6 @@ install.progress = function(completed, total) {
     }
 }
 
-install.modList = function(mods) {
-    modListBox.innerHTML = "";
-    for (var mod of mods) {
-        var checkbox = document.createElement('input');
-        checkbox.type = "checkbox";
-        checkbox.value = mod;
-        checkbox.id = mod.replace(/[^a-zA-Z]/g, "");
-        checkbox.checked = config.mods.includes(mod);
-        checkbox.onchange = modListChanged;
-        checkbox.disabled = true;
-        var label = document.createElement('label');
-        label.htmlFor = checkbox.id;
-        label.appendChild(document.createTextNode(mod));
-        var li = document.createElement('li');
-        li.appendChild(checkbox);
-        li.appendChild(label);
-        modListBox.appendChild(li);
-    }
-}
-
-function modListChanged() {
-    config.mods = [];
-    for (var child of modListBox.children) {
-        if (child.children[0].checked) config.mods.push(child.children[0].value);
-    }
-    saveConfig();
-    disableAll(true);
-    resetProgress();
-    install.install(config.folder, config.folder, config.mods);
-}
-
 verifyBtn.addEventListener('click', function(event) {
     verifyFiles();
 });
@@ -343,13 +307,13 @@ function verifyFiles() {
     if (verifyBtn.disabled) return;
     disableAll(true);
     resetProgress();
-    install.install(config.folder, config.folder, config.mods, true);
+    install.install(config.folder, config.folder, true);
 }
 
 if (fs.existsSync(path.join(config.folder, 'qt-mt305.dll'))) {
     disableAll(true);
     resetProgress();
-    install.install(config.folder, config.folder, config.mods);
+    install.install(config.folder, config.folder);
 } else {
     console.log("First Run");
     progressText.innerHTML = "Click the SETUP button to get started."
@@ -370,9 +334,6 @@ function disableAll(cancel) {
     loginServerSel.disabled = true;
     if (cancel == true)
         cancelBtn.disabled = false;
-    for (var child of modListBox.children) {
-        child.children[0].disabled = true;
-    }
 }
 
 function enableAll() {
@@ -382,9 +343,6 @@ function enableAll() {
     swgOptionsBtn.disabled = false;
     cancelBtn.disabled = true;
     loginServerSel.disabled = false;
-    for (var child of modListBox.children) {
-        child.children[0].disabled = false;
-    }
 }
 
 function saveConfig() {
