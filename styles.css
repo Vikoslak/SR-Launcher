@@ -649,6 +649,16 @@ hr {
 .config-col-full {
   padding: 0 7px;
 }
+.config-scroll {
+  height: 157px;
+  border-right: solid 7px transparent;
+  overflow-y: scroll;
+}
+.config-scroll::-webkit-scrollbar { width: 6px; }
+.config-scroll::-webkit-scrollbar-track { background-color: transparent; border-radius: 100%;}
+.config-scroll::-webkit-scrollbar-thumb { background-color: #000; border-radius: 6px; }
+.config-scroll::-webkit-scrollbar-button { height: 16px; background-color: transparent;}
+.config-scroll::-webkit-scrollbar-corner { background-color: #000;}
 .row {
   margin-bottom: 4px;
   display: flex;
@@ -969,7 +979,7 @@ button.tooltip:hover {
 .config-prompt-close:focus, .config-prompt-close:active {
   opacity: 1;
 }
-.config-prompt-overlay .config-label {
+.config-prompt-overlay .config-col-full .config-label {
   margin: 0 7px 4px;
 }
 .config-prompt p {
@@ -995,6 +1005,17 @@ button.tooltip:hover {
   background-size: auto;
   background-position: 96% 92%;
   background-repeat: no-repeat;
+}
+
+.config-prompt-overlay #setupCompletePrompt .config-options {
+  background-image: url("./img/sr-jedi-tiny-grey.jpg");
+  background-size: auto;
+  background-position: 96% 6%;
+  background-repeat: no-repeat;
+}
+
+.config-prompt-overlay p.sm, .config-prompt-overlay span.sm {
+  font-size: 11px;
 }
 
 .button.game-setup {

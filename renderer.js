@@ -32,6 +32,7 @@ const configPromptClose = document.getElementById("configPromptClose");
 const closeConfigPrompt = document.getElementsByClassName("closeConfigPrompt");
 const gameDirBox = document.getElementById('gameDir');
 const helpLinks = document.getElementById('helpLinks');
+const setupComplete = document.getElementById('setupCompletePrompt');
 const changeDirBtn = document.getElementById('changeDirBtn');
 const verifyBtn = document.getElementById('verifyBtn');
 const configSetupBtn = document.getElementById('configSetupBtn');
@@ -132,6 +133,13 @@ ipc.on('setup-begin-install', function (event, args) {
     playBtn.className = "button";
     swgOptionsBtn.disabled = false;
     disableAll(false);
+    helpBtn.disabled = false;
+    // Welcome message
+    configPromptClose.setAttribute("data-prompt-attr", "setupCompletePrompt");
+    configPromptClose.setAttribute("data-prompt-value", "setupCompletePrompt");
+    configOverlayPrompt("setupCompletePrompt");
+    gameConfigSection.style.display = 'block';
+    gameConfigBtn.className = "option-button sr-button sr-btn-icon sr-btn-icon-left active";
     resetProgress();
     if (fs.existsSync(configFile)) {
         config = JSON.parse(fs.readFileSync(configFile));
@@ -338,6 +346,11 @@ helpLinks.addEventListener('click', function(e) {
     shell.openExternal(e.target.href);
 });
 
+setupComplete.addEventListener('click', function(e) {
+    e.preventDefault();
+    shell.openExternal(e.target.href);
+});
+
 function configOverlayPrompt(promptID) {
     var i, prompts;
     configPromptOverlay.style.display = "block";
@@ -449,7 +462,6 @@ if (fs.existsSync(path.join(config.folder, 'qt-mt305.dll'))) {
     configSetupBtn.disabled = true;
     loginServerSel.disabled = true;
     loginServerConfirm.disabled = true;
-    helpBtn.disabled = true;
     swgOptionsBtn.disabled = true;
     cancelBtn.disabled = true;
 }
