@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build-win": "build --win --ia32",
+    "build-win": "build --win --ia32 -p always",
     "build-linux": "build --linux --x64",
     "build-mac": "build --mac --x64"
   },
@@ -37,13 +37,13 @@
     "electron-log": "^2.2.17",
     "electron-updater": "^3.0.3",
     "follow-redirects": "^1.5.9",
+    "mkdirp": "^0.5.1",
     "random-access-file": "^1.8.1",
     "request": "^2.88.0"
   },
   "build": {
     "productName": "Sentinels Republic Launcher",
     "win": {
-      "requestedExecutionLevel": "highestAvailable",
       "target": [
         "nsis",
         "zip"
