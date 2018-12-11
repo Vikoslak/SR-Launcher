@@ -222,11 +222,16 @@ patchNotesView.addEventListener('will-navigate', function(e) {
 });
 
 patchNotesView.addEventListener('dom-ready', function(e) {
-    patchNotesRefresh.className = 'patch-notes-refresh';
+    patchNotesRefresh.className = 'patch-notes-refresh hidden';
     patchNotesView.style.opacity = '1';
+    setTimeout(function(){
+        patchNotesRefresh.disabled = false;
+        patchNotesRefresh.className = 'patch-notes-refresh';
+    }, 2000);
 });
 
 patchNotesRefresh.addEventListener('click', function(e) {
+    patchNotesRefresh.disabled = true;
     patchNotesRefresh.className = 'patch-notes-refresh spinner';
     patchNotesView.reloadIgnoringCache();
     patchNotesView.style.opacity = '0';

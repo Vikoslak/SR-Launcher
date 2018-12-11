@@ -298,10 +298,12 @@ hr {
   right: 24px;
   width: 16px;
   height: 16px;
+  background-color: transparent;
   background-image: url("./img/buttons/btn-refresh.png");
   background-size: auto;
   background-position: bottom center;
   background-repeat: no-repeat;
+  border: none;
   opacity: 0;
   cursor: pointer;
   -webkit-transition: opacity 0.2s linear;
@@ -312,6 +314,14 @@ hr {
 }
 .patch-notes-wrapper:hover .patch-notes-refresh:hover {
   opacity: 0.8;
+}
+.patch-notes-wrapper .patch-notes-refresh.spinner {
+  cursor: default;
+  opacity: 0.8 !important;
+}
+.patch-notes-wrapper .patch-notes-refresh.hidden {
+  cursor: default;
+  opacity: 0 !important;
 }
 
 .right-section-container {
