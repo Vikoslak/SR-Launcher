@@ -5,3 +5,4 @@ profcalc
 manifest.json
 app-update.yml
 dev-app-update.yml
+/*.tgz
