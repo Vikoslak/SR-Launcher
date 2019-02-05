@@ -224,7 +224,7 @@ hr {
 .config-section-header {
   width: 100%;
   padding: 4px 6px;
-  background-color: #420000;
+  background-color: #0096af;
   color: #fff;
   font-family: Impact;
   font-weight: 600;
@@ -309,16 +309,16 @@ hr {
   display: block;
   width: 19px;
   height: 19px;
-  background-color: #b80000;
-  border: 2px solid #570707;
+  background-color: #fff;
+  border: 2px solid #0096af;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
 .sr-checkbox input[type=checkbox]:checked:after {
   content: "";
   display: inline-block;
-  background-color: #570707;
-  border-color: #b80000;
+  background-color: #0096af;
+  border-color: #000;
 }
 .sr-checkbox input[type=checkbox]:checked:before {
   content: "\00d7";
@@ -351,7 +351,7 @@ hr {
   border-bottom: 1px solid #fff;
 }
 .config-label-notice {
-  color: #570707;
+  color: #0096af;
   font-family: Impact;
   font-weight: 600;
   font-size: 16px;
@@ -561,6 +561,6 @@ select:focus {
 }
 #swgInstallMessageFail.install-msg {
   color: #fff;
-  background-color: rgba(87, 7, 7, 0.8);
-  border-color: #b80000;
+  background-color: rgba(0, 150, 175, 0.8);
+  border-color: #000000;
 }
