@@ -1,4 +1,4 @@
-html, body {
+﻿html, body {
   margin: 0;
   padding: 0;
   background-color: transparent !important;
@@ -69,7 +69,7 @@ hr {
   width: 810px;
   height: 610px;
   z-index: -1;
-  background-image: url("./img/sr-setup-background.png");
+  background-image: url("./img/tcw-setup-background.png");
   background-size: auto;
   background-position: top left;
   background-repeat: no-repeat;
@@ -112,12 +112,13 @@ hr {
 .foot-notes {
   position: absolute;
   bottom: 100px;
+  color:#fff;
 }
 
 .window-management {
   position: absolute;
   top: 28px;
-  right: 50px;
+  right: 60px;
   z-index: 1000;
 }
 .window-management .window-button {
@@ -167,19 +168,18 @@ hr {
 }
 
 .sidebar-text p {
-  font-family: 'Helvetica', 'Arial', sans-serif;
-  font-size: 11px;
+  font-size: 15px;
   line-height: 14px;
   color: #fff;
 }
 
 #sidebarLinks {
   position: absolute;
-  bottom: 74px;
+  bottom: 130px;
 }
 .sidebar-link {
   display: block;
-  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-family: Impact;
   font-size: 14px;
   color: rgba(255,255,255,0.85);
   padding: 8px 0;
@@ -198,8 +198,9 @@ hr {
 }
 
 .setup-title {
-  font-family: 'sr-font';
+  font-family: Impact;
   font-size: 30px;
+  color:white;
   font-weight: 600;
   margin: 0;
   padding: 31px 0 18px;
@@ -217,6 +218,7 @@ hr {
 }
 #setupCancel {
   float: right;
+  left: -20px;
 }
 
 .config-section-header {
@@ -224,7 +226,7 @@ hr {
   padding: 4px 6px;
   background-color: #420000;
   color: #fff;
-  font-family: 'sr-font';
+  font-family: Impact;
   font-weight: 600;
   font-size: 16px;
   text-transform: uppercase;
@@ -295,14 +297,14 @@ hr {
 .sr-checkbox {
   margin-top: 6px;
 }
-.sr-checkbox input[type="checkbox"] {
+.sr-checkbox input[type=checkbox] {
   margin: 0;
   width: 18px;
   height: 18px;
   position: relative;
   cursor: pointer;
 }
-.sr-checkbox input[type="checkbox"]:after {
+.sr-checkbox input[type=checkbox]:after {
   content: "";
   display: block;
   width: 19px;
@@ -312,13 +314,13 @@ hr {
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
-.sr-checkbox input[type="checkbox"]:checked:after {
+.sr-checkbox input[type=checkbox]:checked:after {
   content: "";
   display: inline-block;
   background-color: #570707;
   border-color: #b80000;
 }
-.sr-checkbox input[type="checkbox"]:checked:before {
+.sr-checkbox input[type=checkbox]:checked:before {
   content: "\00d7";
   position: absolute;
   left: 3px;
@@ -327,9 +329,9 @@ hr {
   color: #fff;
 }
 .sr-checkbox label {
-  font-family: 'Helvetica', 'Arial', sans-serif;
   font-size: 14px;
   font-weight: 600;
+  color: #fff;
   margin-left: 6px;
   position: relative;
   top: -3px;
@@ -339,18 +341,18 @@ hr {
 
 
 .config-label {
-  color: #000;
-  font-family: 'sr-font';
+  color: #fff;
+  font-family: Impact;
   font-weight: 600;
   font-size: 18px;
   text-transform: uppercase;
   padding-bottom: 2px;
   margin: 0 0 8px;
-  border-bottom: 1px solid #b80000;
+  border-bottom: 1px solid #fff;
 }
 .config-label-notice {
   color: #570707;
-  font-family: 'sr-font';
+  font-family: Impact;
   font-weight: 600;
   font-size: 16px;
   text-transform: uppercase;
@@ -372,30 +374,31 @@ hr {
   font-size: 12px;
 }
 .sr-button {
-  font-family: 'sr-font';
+  font-family: Impact;
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
   color: #fff;
   cursor: pointer;
   padding: 9px 18px;
-  border: 1px solid #b80000;
-  background-color: #b80000;
+  border: 1px solid #eaeaea;
+  background-color: #0096af;
   outline: none;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
 .sr-button:hover {
-  background-color: #570707;
+  background-color: #eaeaea;
+  color:#0d9bb5;
 }
 .sr-button:active {
-  border-color: #570707;
-  background-color: #570707;
+  border-color: #eaeaea;
+  background-color: #eaeaea;
 }
 .sr-button:disabled {
   cursor: not-allowed;
   background-color: #140d0d !important;
-  border-color: #ab252e !important;
+  border-color: #eaeaea !important;
 }
 
 .sr-button.sr-btn-icon {
