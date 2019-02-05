@@ -1,4 +1,4 @@
-html, body {
+﻿html, body {
   margin: 0;
   padding: 0;
   background-color: transparent !important;
@@ -89,7 +89,7 @@ html {
   width: 1130px;
   height: 610px;
   z-index: -1;
-  background-image: url("./img/sr-background.png");
+  background-image: url("./img/tcw-background.png");
   background-size: auto;
   background-position: top left;
   background-repeat: no-repeat;
@@ -113,11 +113,12 @@ html {
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   flex-basis: 420px;
+  display: flex;
 }
 .right-section {
   position: relative;
   width: 100%;
-  margin: 0 30px 0 70px;
+  margin: 0 30px 0 30px;
 }
 .bottom-section {
   display: flex;
@@ -126,6 +127,7 @@ html {
 }
 .header-section {
   -webkit-app-region: drag;
+  display: flex;
 }
 .header-section * {
   -webkit-app-region: no-drag;
@@ -230,26 +232,29 @@ hr {
 .text-small {
   font-size: 12px;
 }
-
-.sr-logo {
+.logo {
+	width:305px;
+}
+.tcw-logo {
   position: relative;
   top: 12px;
 }
 #headerLinks {
-  margin: 17px 0 10px;
+  margin-top: 60px;
+  padding-left:270px;
 }
 #headerLinks > .text-link {
   padding: 2px 14px 2px;
   border-right: 1px solid #000;
-  font-family: 'sr-font';
+  font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 24px;
   text-transform: uppercase;
 }
 #headerLinks > .text-link {
-  color: #570707;
+  color: #000;
 }
 #headerLinks > .text-link:hover, #headerLinks > .text-link:active, #headerLinks > .text-link:focus {
-  color: #b80000;
+  color: #0096af;
 }
 #headerLinks > .patch-notes-title {
   font-size: 27px;
@@ -284,6 +289,8 @@ hr {
   position: relative;
   background-color: rgba(255,255,255,0.9);
   border: 2px solid #ddd;
+  margin-top: 40px;
+  margin-left:-80px;
 }
 .patch-notes-wrapper .patch-notes-view {
   width: 406px;
@@ -332,14 +339,14 @@ hr {
 }
 
 #mainButtonLinks {
-  width: 116%;
-  height: 100px;
+	margin-top: 40px;
+	margin-left: 5px;
+  width: 95px;
   position: relative;
-  left: -6.9%;
-  margin-top: 3px;
-}
+  display: flex;
+  flex-direction: column;
+ }
 .button-link {
-  width: 19%;
   height: 100%;
   display: inline-block;
   background-size: auto;
@@ -369,25 +376,27 @@ hr {
 }
 
 .sr-button {
-  font-family: 'sr-font';
+  font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
   color: #fff;
   cursor: pointer;
   padding: 9px 18px;
-  border: 1px solid #b80000;
-  background-color: #b80000;
+  border: 1px solid #fff;
+  background-color: #0096af;
   outline: none;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
 .sr-button:hover {
-  background-color: #570707;
+  background-color: #fff;
+  color:#0096af;
 }
 .sr-button:active {
-  border-color: #570707;
-  background-color: #570707;
+  border-color: #0096af;
+  background-color: #fff;
+  color:#0096af;
 }
 .sr-button:disabled {
   cursor: not-allowed;
@@ -422,7 +431,9 @@ hr {
   background-position: center center;
   background-repeat: no-repeat;
 }
-
+.options-buttons {
+	margin-top: 75px;
+}
 .option-button {
   width: 180px;
   display: inline-flex;
@@ -437,7 +448,7 @@ hr {
   background-color: #570707;
 }
 #gameConfigBtn {
-  float: right;
+margin-left:15px;
 }
 #gameConfigBtn::after {
   background-image: url("./img/icons/icon-game-config.png"),url("./img/icons/icon-game-config-hover.png");
@@ -619,14 +630,14 @@ hr {
   box-shadow: 0 2px 9px rgba(0,0,0,0.3);
 }
 .config-section-header {
-  width: 100%;
-  padding: 4px 6px;
-  background-color: #420000;
-  color: #fff;
-  font-family: 'sr-font';
-  font-weight: 600;
-  font-size: 16px;
-  text-transform: uppercase;
+	width: 100%;
+	padding: 4px 6px;
+	background-color: #0096af;
+	color: #fff;
+	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+	font-weight: 600;
+	font-size: 16px;
+	text-transform: uppercase;
 }
 .config-options {
   font-family: 'Helvetica', 'Arial', sans-serif;
@@ -706,17 +717,19 @@ hr {
   cursor: pointer;
   font-weight: 600;
   padding: 6px 8px;
-  border: 1px solid #b80000;
-  background-color: #b80000;
+  border: 1px solid #0096af;
+  background-color: #0096af;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
 .sr-button-sm:hover {
-  background-color: #570707;
+  background-color: #fff;
+  color:#0096af;
 }
 .sr-button-sm:active {
-  border-color: #570707;
-  background-color: #570707;
+  border-color: #0096af;
+  background-color: #fff;
+  color:#0096af;
 }
 .sr-button-sm:disabled {
   cursor: not-allowed;
@@ -741,8 +754,8 @@ a.sr-button-sm:active {
 }
 a.sr-button-sm:focus {
   color: #fff;
-  border-color: #b80000;
-  background-color: #b80000;
+  border-color: #fff;
+  background-color: #0096af;
 }
 
 input {
@@ -758,7 +771,7 @@ input {
   transition: all 0.1s linear;
 }
 input:focus {
-  border-bottom: 1px solid #b80000;
+  border-bottom: 1px solid #0096af;
   outline: none !important;
 }
 #browse {
@@ -786,7 +799,7 @@ input:focus {
 
 .config-label-sm {
   color: #555;
-  font-family: 'sr-font';
+  font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-weight: 600;
   font-size: 13px;
   text-transform: uppercase;
@@ -802,7 +815,7 @@ select {
   transition: all 0.1s linear;
 }
 select:focus {
-  border-bottom: 1px solid #b80000;
+  border-bottom: 1px solid #0096af;
   outline: none !important;
 }
 
@@ -851,21 +864,21 @@ button.tooltip:hover {
   transition: opacity 0.1s ease;
 }
 
-[tooltip-position='left']::before{
+[tooltip-position=left]::before{
   left:0%;
   top:50%;
   margin-left:-12px;
   transform:translatey(-50%) rotate(-90deg);
 }
-[tooltip-position='top']::before{
+[tooltip-position=top]::before{
   left:50%;
 }
-[tooltip-position='buttom']::before{
+[tooltip-position=buttom]::before{
   top:100%;
   margin-top:8px;
   transform: translateX(-50%) translatey(-100%) rotate(-180deg);
 }
-[tooltip-position='right']::before{
+[tooltip-position=right]::before{
   left:100%;
   top:50%;
   margin-left:1px;
@@ -893,21 +906,21 @@ button.tooltip:hover {
   transition: opacity 0.1s ease;
 }
 
-[tooltip-position='left']::after{
+[tooltip-position=left]::after{
   left:0%;
   top:50%;
   margin-left:-8px;
   transform: translateX(-100%)   translateY(-50%);
 }
-[tooltip-position='top']::after{
+[tooltip-position=top]::after{
   left:50%;
 }
-[tooltip-position='buttom']::after{
+[tooltip-position=buttom]::after{
   top:100%;
   margin-top:8px;
   transform: translateX(-50%) translateY(0%);
 }
-[tooltip-position='right']::after{
+[tooltip-position=right]::after{
   left:100%;
   top:50%;
   margin-left:8px;
@@ -1001,14 +1014,14 @@ button.tooltip:hover {
   margin: 0 0 9px;
 }
 .config-prompt-overlay #helpInfoPrompt .config-options {
-  background-image: url("./img/sr-jedi-tiny-grey.jpg");
+  background-image: url("./img/tcw-tiny.jpg");
   background-size: auto;
   background-position: 96% 92%;
   background-repeat: no-repeat;
 }
 
 .config-prompt-overlay #setupCompletePrompt .config-options {
-  background-image: url("./img/sr-jedi-tiny-grey.jpg");
+  background-image: url("./img/tcw-tiny.jpg");
   background-size: auto;
   background-position: 96% 6%;
   background-repeat: no-repeat;
@@ -1049,7 +1062,7 @@ button.tooltip:hover {
 }
 .alert-msg.fail {
   color: #fff;
-  background-color: rgba(87, 7, 7, 0.8);
+  background-color: rgba(0, 150, 175, 0.8);
   border-color: #b80000;
 }
 
