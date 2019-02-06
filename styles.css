@@ -253,8 +253,17 @@ hr {
 #headerLinks > .text-link {
   color: #000;
 }
+.strokeme
+{
+    color: white;
+    text-shadow:
+    -1px -1px 0 #0096af,
+    1px -1px 0 #0096af,
+    -1px 1px 0 #0096af,
+    1px 1px 0 #0096af;  
+}
 #headerLinks > .text-link:hover, #headerLinks > .text-link:active, #headerLinks > .text-link:focus {
-  color: #0096af;
+  color: #fff;
 }
 #headerLinks > .patch-notes-title {
   font-size: 27px;
@@ -401,7 +410,7 @@ hr {
 .sr-button:disabled {
   cursor: not-allowed;
   background-color: #140d0d !important;
-  border-color: #ab252e !important;
+  border-color: #0096af !important;
 }
 
 .sr-button.sr-btn-icon {
@@ -433,6 +442,7 @@ hr {
 }
 .options-buttons {
 	margin-top: 75px;
+	margin-left: 50px;
 }
 .option-button {
   width: 180px;
@@ -445,7 +455,8 @@ hr {
   left: 6px;
 }
 .option-button.active {
-  background-color: #570707;
+  background-color: #fff;
+  color:#0096af;
 }
 #gameConfigBtn {
 margin-left:15px;
@@ -604,8 +615,10 @@ margin-left:15px;
   height: 200px;
   position: relative;
   background-color: rgba(255,255,255,0.97);
-  border: 2px solid #570707;
+  border: 2px solid #0096af;
   box-shadow: 0 2px 9px rgba(0,0,0,0.3);
+  margin-left: -40px;
+  z-index:4;
 }
 .config-section-arrow {
   position: absolute;
@@ -643,7 +656,7 @@ margin-left:15px;
   font-family: 'Helvetica', 'Arial', sans-serif;
   color: #000;
   display: flex;
-  padding: 12px 7px;
+  padding: 0px 7px;
 }
 .config-row {
   display: flex;
@@ -708,7 +721,7 @@ margin-left:15px;
   text-transform: uppercase;
   padding-bottom: 2px;
   margin: 0 0 4px;
-  border-bottom: 1px solid #b80000;
+  border-bottom: 1px solid #0096af;
 }
 .sr-button-sm {
   font-family: 'Helvetica', 'Arial', sans-serif;
@@ -734,7 +747,7 @@ margin-left:15px;
 .sr-button-sm:disabled {
   cursor: not-allowed;
   background-color: #140d0d !important;
-  border-color: #ab252e !important;
+  border-color: #0096af !important;
 }
 .sr-button-sm.full-width {
   width: 100%;
