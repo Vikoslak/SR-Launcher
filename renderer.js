@@ -56,7 +56,7 @@ const versionDiv = document.getElementById('version');
 versionDiv.innerHTML = package.version;
 
 const configFile = os.homedir() + '/Documents/My Games/SWG - Sentinels Republic/SR-Launcher-config.json';
-var config = {folder: 'C:\\SREmu'};
+var config = {folder: 'C:\\SWGTCW'};
 
 if (fs.existsSync(configFile))
     config = JSON.parse(fs.readFileSync(configFile));
