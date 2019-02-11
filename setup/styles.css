@@ -526,7 +526,7 @@ select {
   transition: all 0.1s linear;
 }
 select:focus {
-  border-bottom: 1px solid #b80000;
+  border-bottom: 1px solid #0096af;
   outline: none !important;
 }
 
