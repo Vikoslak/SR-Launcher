@@ -1,7 +1,7 @@
 {
   "name": "swgtcw-launcher",
   "version": "1.0.2",
-  "description": "SWG The Clone Wars Launcher",
+  "description": "SWGE The Clone Wars Launcher",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
