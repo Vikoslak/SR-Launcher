@@ -496,15 +496,15 @@ margin-left:15px;
 
 .play-button-container #play, .play-button-container #play:focus {
   width: 100%;
-  font-family: 'sr-font';
+  font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 32px;
   color: #fff;
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
   padding: 8px 0;
-  border: 1px solid #b80000;
-  background-color: #b80000;
+  border: 1px solid #0096af;
+  background-color: #0096af;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
@@ -519,7 +519,7 @@ margin-left:15px;
 .play-button-container #play:disabled {
   cursor: not-allowed;
   background-color: #140d0d !important;
-  border-color: #ab252e !important;
+  border-color: #0096af !important;
 }
 
 #cancelBtn {
@@ -574,9 +574,10 @@ margin-left:15px;
 
 #progress {
   height: 8px;
-  background: -webkit-linear-gradient(left, rgba(184,0,0,1) 0%,rgba(184,0,0,1) 85%,rgba(66,0,0,1) 100%);
-  background: linear-gradient(to right, rgba(184,0,0,1) 0%,rgba(184,0,0,1) 85%,rgba(66,0,0,1) 100%);
+  background: -webkit-linear-gradient(left, rgba(0,150,175,1) 0%,rgba(0,150,175,1) 85%,rgba(0,39,46,1) 100%);
+  background: linear-gradient(to right, rgba(0,150,175,1) 0%,rgba(0,150,175,1) 85%,rgba(0,39,46,1) 100%);
 }
+
 .server-stats {
   color: #fff;
   font-family: 'sr-font';
