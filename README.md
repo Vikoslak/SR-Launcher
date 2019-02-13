@@ -1,8 +1,5 @@
-# Sentinels Republic Launcher
 
 **Electron application based on [dpwhitter's RoC Launcher](https://github.com/dpwhittaker/RoC-Launcher)**
-
-**All graphics are property of Sentinels Republic**
 
 ## Features
 
