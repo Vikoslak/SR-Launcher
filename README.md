@@ -1,9 +1,7 @@
 
-**Electron application based on [dpwhitter's RoC Launcher](https://github.com/dpwhittaker/RoC-Launcher)**
+**Electron application based on [dpwhitter's RoC Launcher](https://github.com/dpwhittaker/RoC-Launcher) and [Tylco's SR Launcher](https://github.com/DesporoWace/SR-Launcher)**
 
-## Features
 
-The Sentinel Republic (SR) Launcher includes a new user friendly interface, a guided set up process, patching for multiple login servers and Linux/macOS compatibility. Also included are many other miscellaneous tweaks, improvements and new features.
 
 ## Get Started
 
