@@ -509,11 +509,12 @@ margin-left:15px;
   transition: all 0.1s linear;
 }
 .play-button-container #play:hover {
-  background-color: #570707
+  background-color: #fff;
+  color: #0096af;
 }
 .play-button-container #play:active {
-  border-color: #570707;
-  background-color: #570707
+  border-color: #0096af;
+  background-color: #0096af
 }
 
 .play-button-container #play:disabled {
