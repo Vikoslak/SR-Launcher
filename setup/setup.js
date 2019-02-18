@@ -35,8 +35,8 @@ const agreeCleanUp = document.getElementById('agreeCleanUp');
 const cleanUpCount = document.getElementById('cleanUpCount');
 const cleanUpSize = document.getElementById('cleanUpSize');
 
-const configFile = require('os').homedir() + '/Documents/My Games/SWG - Sentinels Republic/SR-Launcher-config.json';
-var config = {folder: 'C:\\SREmu'};
+const configFile = require('os').homedir() + '/Documents/My Games/SWGTCW/SWGTCW-Launcher-config.json';
+var config = {folder: 'C:\\SWGTCW'};
 if (fs.existsSync(configFile))
     config = JSON.parse(fs.readFileSync(configFile));
 folderBox.value = config.folder;

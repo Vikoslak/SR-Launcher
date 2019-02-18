@@ -18,6 +18,7 @@ p, span {
   margin: 0;
   font-size: 14px;
   font-family: 'Helvetica', 'Arial', sans-serif;
+  color:#fff;
 }
 hr {
   border: none;
@@ -233,7 +234,7 @@ hr {
 }
 .config-options {
   font-family: 'Helvetica', 'Arial', sans-serif;
-  color: #000;
+  color: #fff;
   display: flex;
   padding: 12px 7px;
 }
@@ -360,6 +361,7 @@ hr {
 }
 .setup-tips {
   font-family: 'Helvetica', 'Arial', sans-serif;
+  color: #fff;
   font-size: 14px;
   padding: 8px 0;
 }
@@ -375,7 +377,7 @@ hr {
 }
 .sr-button {
   font-family:Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
   color: #fff;
@@ -483,14 +485,15 @@ hr {
 
 .install-suggested  {
   margin-top: 6px;
+  color:#fff;
 }
 .install-suggested strong {
   font-size: 11px;
-  color: #000;
+  color: #fff;
 }
 .install-suggested span {
   font-size: 11px;
-  color: #444;
+  color: #fff;
 }
 .install-location p strong {
   font-size: 14px;
@@ -501,7 +504,7 @@ input#folder:disabled, input#swgFolder:disabled {
   width: 100%;
   font-size: 10px;
   font-weight: 600;
-  color: #444;
+  color: #fff;
   border: none;
   background-color: rgba(200,200,200,0.6);
   margin-top: 4px;
