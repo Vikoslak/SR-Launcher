@@ -1,10 +1,6 @@
 
 **Electron application based on [dpwhitter's RoC Launcher](https://github.com/dpwhittaker/RoC-Launcher) and [Tylco's SR Launcher](https://github.com/DesporoWace/SR-Launcher)**
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 1d3e45f2e727357094046f2a427473fe6694a10f
 
 ## Get Started
 
