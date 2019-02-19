@@ -13,9 +13,12 @@ module.exports.getManifest = function(fullScan, emuPath, checkFiles) {
     if (fullScan || emuPath && !fs.existsSync(path.join(emuPath, "swgemu.cfg"))) {
         //force download with size:0, md5:""
         files = files.concat([
-            {name:"swgemu.cfg", size:0, md5:"", url:"http://www.launchpad2.net/SWGEmu/swgemu.cfg"},
-            {name:"swgemu_machineoptions.iff", size:0, md5:"", url:"http://www.launchpad2.net/SWGEmu/swgemu_machineoptions.iff"},
-            {name:"swgemu_preload.cfg", size:0, md5:"", url:"http://www.launchpad2.net/SWGEmu/swgemu_preload.cfg"},
+            {name:"swgemu.cfg", size:0, md5:0, url:"http://ode-guild.com/swg/required/swgemu.cfg"},
+            {name:"swgemu_machineoptions.iff", size:0, md5:0, url:"http://ode-guild.com/swg/required/swgemu_machineoptions.iff"},
+            {name:"swgemu_login.cfg",size:0, md5:0, url:"http://ode-guild.com/swg/required/swgemu_login.cfg"}, 
+            {name:"swgemu_preload.cfg", size:0, md5:0, url:"http://ode-guild.com/swg/required/swgemu_preload.cfg"},
+            {name:"swgemu_live.cfg", size:0, md5:0, url:"http://ode-guild.com/swg/updates/swgemu_live.cfg"}, 
+            {name:"user.cfg", "size":0, md5:0, url:"http://ode-guild.com/swg/required/user.cfg"},
         ]);
     }
     request({url:server[config.login][0].manifestUrl, json:true}, function(err, response, body) {
@@ -23,8 +26,8 @@ module.exports.getManifest = function(fullScan, emuPath, checkFiles) {
         files = unionByName(files, body.required);
         if (checkFiles) checkFiles(files);
     });
-
 }
+
 function unionByName(a, b) {
     var lookup = {};
     for (var i of b) lookup[i.name] = true;
