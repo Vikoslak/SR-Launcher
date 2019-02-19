@@ -596,12 +596,12 @@ margin-left:15px;
 }
 .server-stat-data {
   display: inline-block;
-  margin-right: 18px;
+  margin-right: 25px;
   max-width: 300px;
   overflow: hidden;
 }
 #serverStatus {
-  width: 56px;
+  width: 75px;
 }
 #activeServer {
   width: 150px;
