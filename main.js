@@ -48,7 +48,7 @@ function createWindow() {
     protocol: 'file:',
     slashes: true
   }));
-  if (require('electron-is-dev')) mainWindow.webContents.openDevTools();
+  //if (require('electron-is-dev')) mainWindow.webContents.openDevTools();
   mainWindow.once('ready-to-show', () => mainWindow.show());
   mainWindow.once('closed', () => mainWindow = null);
 }
