@@ -23,8 +23,8 @@ module.exports.getManifest = function(fullScan, emuPath, checkFiles) {
         files = unionByName(files, body.required);
         if (checkFiles) checkFiles(files);
     });
-}
 
+}
 function unionByName(a, b) {
     var lookup = {};
     for (var i of b) lookup[i.name] = true;
