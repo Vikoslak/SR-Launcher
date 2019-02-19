@@ -13,9 +13,11 @@ module.exports.getManifest = function(fullScan, emuPath, checkFiles) {
     if (fullScan || emuPath && !fs.existsSync(path.join(emuPath, "swgemu.cfg"))) {
         //force download with size:0, md5:""
         files = files.concat([
+        	{name:"swgemu.cfg", size:0, md5:0, url:"https://www.dropbox.com/s/d5ztyvc78b8fqtc/swgemu_login.cfg?dl=1"},
             {name:"swgemu.cfg", size:0, md5:0, url:"http://www.launchpad2.net/SWGEmu/swgemu.cfg"},
             {name:"swgemu_machineoptions.iff", size:0, md5:0, url:"http://www.launchpad2.net/SWGEmu/swgemu_machineoptions.iff"},
             {name:"swgemu_preload.cfg", size:0, md5:0, url:"http://www.launchpad2.net/SWGEmu/swgemu_preload.cfg"},
+            
         ]);
     }
     request({url:server[config.login][0].manifestUrl, json:true}, function(err, response, body) {
