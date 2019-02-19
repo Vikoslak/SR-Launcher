@@ -2,7 +2,7 @@
 	"live": [
 		{"address":"149.56.100.90","port":"44453","manifestUrl":"http://swgtcw.com/launcher/manifest.json","statusUrl":"http://live.swgtcw.com/launcher-status.php"}
 	],
-	"live": [
+	"test": [
 		{"address":"149.56.100.90","port":"44453","manifestUrl":"http://swgtcw.com/launcher/manifest.json","statusUrl":"http://live.swgtcw.com/launcher-status.php"}
 	]
 }
