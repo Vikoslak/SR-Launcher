@@ -15,7 +15,7 @@ module.exports.getManifest = function(fullScan, emuPath, checkFiles) {
         files = files.concat([
             {name:"swgemu.cfg", size:0, md5:"", url:"http://www.launchpad2.net/SWGEmu/swgemu.cfg"},
             {name:"swgemu_machineoptions.iff", size:0, md5:"", url:"http://www.launchpad2.net/SWGEmu/swgemu_machineoptions.iff"},
-            {name:"swgemu_preload.cfg", size:0, md5:"", url:"http://www.launchpad2.net/SWGEmu/swgemu_preload.cfg"}
+            {name:"swgemu_preload.cfg", size:0, md5:"", url:"http://www.launchpad2.net/SWGEmu/swgemu_preload.cfg"},
         ]);
     }
     request({url:server[config.login][0].manifestUrl, json:true}, function(err, response, body) {
