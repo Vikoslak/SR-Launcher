@@ -55,7 +55,7 @@ const activeServer = document.getElementById('activeServer');
 const versionDiv = document.getElementById('version');
 versionDiv.innerHTML = package.version;
 
-const configFile = os.homedir() + '/Documents/My Games/SWGTCW/TCW-Launcher-config.json';
+const configFile = os.homedir() + '/Documents/My Games/SWGTCW/SWGTCW-Launcher-config.json';
 var config = {folder: 'C:\\SWGTCW'};
 
 if (fs.existsSync(configFile))
@@ -78,7 +78,7 @@ if (!config.zoom) {
 }
 zoomSel.value = config.zoom;
 if (!config.login) {
-    config.login = "live";
+    config.login = "prod";
     needSave = true;
 }
 loginServerSel.value = config.login;
@@ -89,7 +89,7 @@ getServerStatus(config.login);
 activeServer.innerHTML = server[config.login][0].address;
 
 function getServerStatus(serverStatusLogin) {
-    if (serverStatusLogin != "live") {
+    if (serverStatusLogin != "prod") {
         serverStatus.innerHTML = "unknown";
     } else {
         request({url:server[serverStatusLogin][0].statusUrl, json:true}, function(err, response, body) {

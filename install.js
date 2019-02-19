@@ -7,7 +7,7 @@ module.exports.getManifest = function(fullScan, emuPath, checkFiles) {
     var files = require('./json/required');
 
     const configFile = require('os').homedir() + '/Documents/My Games/SWGTCW/SWGTCW-Launcher-config.json';
-    var config = {login: 'live'};
+    var config = {login: 'prod'};
     if (fs.existsSync(configFile)) config = JSON.parse(fs.readFileSync(configFile));
     
     if (fullScan || emuPath && !fs.existsSync(path.join(emuPath, "swgemu.cfg"))) {
