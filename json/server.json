@@ -1,8 +1,11 @@
 {
 	"prod": [
-		{"address":"149.56.100.90","port":"44453","manifestUrl":"http://swgtcw.com/launcher/manifest.json","statusUrl":"http://live.swgtcw.com/launcher-status.php"}
+		{"address":"158.69.122.41","port":"44453","manifestUrl":"http://swgtcw.com/launcher/manifest.json","statusUrl":"http://live.swgtcw.com/launcher-status.php"}
+	],
+	"prodrepub": [
+		{"address":"158.69.122.41","port":"44453","manifestUrl":"http://swgtcw.com/launcher/prodrepub/manifest.json","statusUrl":"http://live.swgtcw.com/launcher-status.php"}
 	],
 	"test": [
-		{"address":"8.8.8.8","port":"44453","manifestUrl":"http://swgtcw.com/launcher/manifest.json","statusUrl":"http://live.swgtcw.com/launcher-status.php"}
+		{"address":"149.56.100.90","port":"44453","manifestUrl":"http://swgtcw.com/launcher/testserver/manifest.json","statusUrl":"http://live.swgtcw.com/test-status.php"}
 	]
 }
