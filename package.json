@@ -1,6 +1,6 @@
 {
   "name": "swgtcw-launcher",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "SWG The Clone Wars Launcher",
   "main": "main.js",
   "scripts": {
