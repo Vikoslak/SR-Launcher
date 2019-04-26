@@ -1,11 +1,11 @@
 {
   "name": "swgtcw-launcher",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "SWG The Clone Wars Launcher",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build-win": "build --win --ia32",
+    "build-win": "build --win --ia32 -p always",
     "build-linux": "build --linux --x64",
     "build-mac": "build --mac --x64"
   },
